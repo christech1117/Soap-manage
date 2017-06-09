@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" theme="light" unique-opened router>
+        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="light" unique-opened router>
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index">
@@ -108,11 +108,6 @@
                         title: '設置'
                     },
                 ]
-            }
-        },
-        computed:{
-            onRoutes () {
-                return this.$route.path.replace('/', '');
             }
         }
     }
