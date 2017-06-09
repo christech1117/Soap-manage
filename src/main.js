@@ -9,7 +9,6 @@ import VueProgressBar from 'vue-progressbar'
 import '../static/css/theme-green/index.css';       // 浅绿色主题
 import "babel-polyfill";
 
-
 const options = {
   color: '#00d1b2',
   failedColor: '#874b4b',

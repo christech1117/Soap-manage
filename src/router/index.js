@@ -11,49 +11,61 @@ export default new Router({
         },
         {
             path: '/dashboard',
-            component: resolve => require(['../components/common/Home.vue'], resolve),
+            component: resolve => require(['../components/layout/Home.vue'], resolve),
             children:[
                 {
                     path: '/',
-                    component: resolve => require(['../components/page/Readme.vue'], resolve)
+                    component: resolve => require(['../views/Readme.vue'], resolve)
                 },
                 {
                     path: '/user',
-                    component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+                    component: resolve => require(['../views/BaseTable.vue'], resolve)
                 },
                 {
                     path: '/news',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+                    component: resolve => require(['../views/VueTable.vue'], resolve)     // vue-datasource组件
                 },
                 {
                     path: '/comment',
-                    component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+                    component: resolve => require(['../views/BaseForm.vue'], resolve)
                 },
                 {
                     path: '/productList',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
+                    component: resolve => require(['../views/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {
                     path: '/navbarMenu',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../views/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
                     path: '/bannerMenu',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../views/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
-                    path: '/productList',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
+                    path: '/lineChart',
+                    component: resolve => require(['../views/BaseCharts.vue'], resolve)   // vue-schart组件
+                },
+                {
+                    path: '/barChart',
+                    component: resolve => require(['../views/BaseCharts.vue'], resolve)   // vue-schart组件
+                },
+                {
+                    path: '/pieChart',
+                    component: resolve => require(['../components/chart/PieChart.vue'], resolve)   // vue-schart组件
+                },
+                {
+                    path: '/mixChart',
+                    component: resolve => require(['../components/chart/MixChart.vue'], resolve)   // vue-schart组件
                 },
                 {
                     path: '/setting',
-                    component: resolve => require(['../components/page/DragList.vue'], resolve)    // 拖拽列表组件
+                    component: resolve => require(['../views/DragList.vue'], resolve)    // 拖拽列表组件
                 }
             ]
         },
         {
             path: '/login',
-            component: resolve => require(['../components/page/Login.vue'], resolve)
+            component: resolve => require(['../views/Login.vue'], resolve)
         },
     ]
 })

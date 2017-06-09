@@ -64,16 +64,20 @@
             "title": "數據統計",
             "subs": [
                 {
-                    "index": "/productList",
+                    "index": "/lineChart",
                     "title": "折線圖"
                 },
                 {
-                    "index": "/productList",
+                    "index": "/barChart",
                     "title": "長條圖"
                 },
                 {
-                    "index": "/productList",
+                    "index": "/pieChart",
                     "title": "圓餅圖"
+                },
+                {
+                    "index": "/mixChart",
+                    "title": "綜合顯示圖"
                 }
             ]
         },
