@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import axios from 'axios';
+import VueAxios from 'vue-axios';
 import ElementUI from 'element-ui';
 import VueProgressBar from 'vue-progressbar'
 // import 'element-ui/lib/theme-default/index.css';    // 默认主题
@@ -25,8 +26,20 @@ const options = {
 
 Vue.use(VueProgressBar, options)
 Vue.use(ElementUI);
-Vue.prototype.$axios = axios;
+Vue.use(VueAxios, axios);
+
+// Vue.prototype.$axios = axios;
+
+// new Vue({
+//     router,
+//     render: h => h(App)
+// }).$mount('#app');
+
+/* eslint-disable no-new */
 new Vue({
-    router,
-    render: h => h(App)
-}).$mount('#app');
+  el: '#app',
+  router,
+//   store,
+  template: '<App/>',
+  components: { App }
+})
