@@ -6,17 +6,13 @@
                 <el-breadcrumb-item>人員管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-
         <el-table :data="tableData" border style="width: 100%">
-            <el-table-column label="排序" width="120">
+            <el-table-column label="#" width="120">
                 <template scope="scope">
                     <span>{{ scope.row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="註冊日期" sortable width="180">
-                <template scope="scope">
-                    <span>{{ scope.row.date }}</span>
-                </template>
+            <el-table-column prop="date" label="註冊日期" sortable width="180">
             </el-table-column>
             <el-table-column label="姓名" width="180">
                 <template scope="scope">
@@ -26,8 +22,20 @@
             </el-table-column>
             <el-table-column label="信箱">
                 <template scope="scope">
-                    <el-input v-show="scope.row.edit" size="small" v-model="scope.row.address"></el-input>
-                    <span v-show="!scope.row.edit">{{ scope.row.address }}</span>
+                    <el-input v-show="scope.row.edit" size="small" type="email" v-model="scope.row.mail"></el-input>
+                    <span v-show="!scope.row.edit">{{ scope.row.mail }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="手機" width="230">
+                <template scope="scope">
+                    <el-input v-show="scope.row.edit" size="small" type="phone" v-model="scope.row.phone"></el-input>
+                    <span v-show="!scope.row.edit">{{ scope.row.phone }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="權限" width="120">
+                <template scope="scope">
+                    <el-switch v-model="scope.row.auth" on-text="" off-text="" on-color="#13ce66">
+                    </el-switch>
                 </template>
             </el-table-column>
             <el-table-column align="center" label="操作" width="300">
@@ -56,95 +64,117 @@
 <script>
 export default {
     data() {
-        return { 
+        return {
             tableData: [
                 {
                     id: 1,
                     date: '2016-05-02',
                     name: '劉秀',
-                    address: 'abcc456@yahoo.com.tw',
+                    mail: 'abcc456@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '家',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 2,
                     date: '2016-05-04',
                     name: '陰麗華',
-                    address: 'abcc45678@gmail.com',
+                    mail: 'abcc45678@gmail.com',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 3,
                     date: '2016-05-01',
                     name: '小寶寶',
-                    address: 'jasidjasi@gmail.com',
+                    mail: 'jasidjasi@gmail.com',
+                    phone: '0920-123-456',
                     tag: '家',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 4,
                     date: '2016-05-03',
                     name: '阿🐷',
-                    address: 'vmvmk@yahoo.com.tw',
+                    mail: 'vmvmk@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 5,
                     date: '2016-05-03',
                     name: '鄧奉',
-                    address: 'feeling221@hotmail.com',
+                    mail: 'feeling221@hotmail.com',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 6,
                     date: '2016-05-08',
                     name: '陰識',
-                    address: 'abcc456@yahoo.com.tw',
+                    mail: 'abcc456@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 7,
                     date: '2016-05-18',
                     name: '陰興',
-                    address: 'abcc456@yahoo.com.tw',
+                    mail: 'abcc456@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 8,
                     date: '2016-05-20',
                     name: '郭家',
-                    address: 'feeling221@gmail.com',
+                    mail: 'feeling221@gmail.com',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 9,
                     date: '2016-06-01',
                     name: '阿禹',
-                    address: 'abcc456@yahoo.com.tw',
+                    mail: 'abcc456@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 10,
                     date: '2016-06-03',
                     name: '劉伯升',
-                    address: '963vc745@yahoo.com.tw',
+                    mail: '963vc745@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 },
                 {
                     id: 11,
                     date: '2016-06-03',
                     name: '次元伯',
-                    address: 'Adsjkd1127@yahoo.com.tw',
+                    mail: 'Adsjkd1127@yahoo.com.tw',
+                    phone: '0920-123-456',
                     tag: '公司',
-                    edit: false
+                    edit: false,
+                    auth: true
                 }
             ]
         }
@@ -181,6 +211,10 @@ export default {
 <style>
 
 .el-table, .el-input {
-    font-size: 1.2rem
+    font-size: 1.2rem;
+    
+}
+.el-table-column {
+    transition: all 1s;
 }
 </style>
