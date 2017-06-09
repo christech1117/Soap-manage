@@ -26,27 +26,27 @@ export default new Router({
                     component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
                 },
                 {
-                    path: '/baseform',
+                    path: '/comment',
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
                 },
                 {
-                    path: '/vueeditor',
+                    path: '/productList',
                     component: resolve => require(['../components/page/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {
-                    path: '/markdown',
+                    path: '/navbarMenu',
                     component: resolve => require(['../components/page/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
-                    path: '/upload',
+                    path: '/bannerMenu',
                     component: resolve => require(['../components/page/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
-                    path: '/basecharts',
+                    path: '/productList',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve)   // vue-schart组件
                 },
                 {
-                    path: '/drag',
+                    path: '/setting',
                     component: resolve => require(['../components/page/DragList.vue'], resolve)    // 拖拽列表组件
                 }
             ]
