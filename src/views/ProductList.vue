@@ -6,33 +6,33 @@
                 <el-breadcrumb-item>人員管理</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
-        <el-table :data="users" border style="width: 100%">
+        <el-table :data="products" border style="width: 100%">
             <el-table-column label="#" width="120">
                 <template scope="scope">
                     <span>{{ scope.row.id }}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="date" label="註冊日期" sortable width="180">
+            <el-table-column prop="date" label="上架日期" sortable width="180">
             </el-table-column>
-            <el-table-column label="姓名" width="180">
+            <el-table-column label="商品名稱" width="180">
                 <template scope="scope">
                     <el-input v-show="scope.row.edit" size="small" v-model="scope.row.name"></el-input>
                     <span v-show="!scope.row.edit">{{ scope.row.name }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="信箱">
+            <el-table-column label="折扣">
                 <template scope="scope">
-                    <el-input v-show="scope.row.edit" size="small" type="email" v-model="scope.row.mail"></el-input>
-                    <span v-show="!scope.row.edit">{{ scope.row.mail }}</span>
+                    <el-input v-show="scope.row.edit" size="small" type="email" v-model="scope.row.cover"></el-input>
+                    <span v-show="!scope.row.edit">{{ scope.row.cover }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="手機" width="230">
+            <el-table-column label="售價" width="230">
                 <template scope="scope">
-                    <el-input v-show="scope.row.edit" size="small" type="phone" v-model="scope.row.phone"></el-input>
-                    <span v-show="!scope.row.edit">{{ scope.row.phone }}</span>
+                    <el-input v-show="scope.row.edit" size="small" type="number" v-model="scope.row.price"></el-input>
+                    <span v-show="!scope.row.edit">{{ scope.row.price }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="權限" width="120">
+            <el-table-column label="狀態" width="120">
                 <template scope="scope">
                     <el-switch v-model="scope.row.auth" on-text="" off-text="" on-color="#13ce66">
                     </el-switch>
@@ -41,13 +41,13 @@
             <el-table-column align="center" label="操作" width="300">
                 <template scope="scope">
                 <!--
-                    <el-button v-show="!scope.row.edit" size="" icon="edit" type="primary" @click="edit(scope.$index, users)">編輯</el-button>
-                    <el-button v-show="scope.row.edit" size="" icon="check" type="success" @click="save(scope.$index, users)">完成</el-button>
+                    <el-button v-show="!scope.row.edit" size="" icon="edit" type="primary" @click="edit(scope.$index, products)">編輯</el-button>
+                    <el-button v-show="scope.row.edit" size="" icon="check" type="success" @click="save(scope.$index, products)">完成</el-button>
                 -->
                     <el-button v-show='!scope.row.edit' type="primary" @click='scope.row.edit=true' size="" icon="edit">编辑</el-button>
                     <el-button v-show='scope.row.edit' type="success" @click='scope.row.edit=false' size="" icon="check">完成</el-button>
 
-                    <el-button size="" icon="delete" type="danger" @click="handleDelete(scope.$index, users)">刪除</el-button>
+                    <el-button size="" icon="delete" type="danger" @click="handleDelete(scope.$index, products)">刪除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -65,13 +65,13 @@
 export default {
     data() {
         return {
-            users: []
+            products: []
         }
     },
     mounted () {
-        this.axios.get('http://localhost:3000/users').then(response => {
+        this.axios.get('http://localhost:3000/products').then(response => {
         console.log(response.data)
-        this.users = response.data
+        this.products = response.data
         })
     },
     methods: {

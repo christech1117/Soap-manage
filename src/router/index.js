@@ -31,7 +31,7 @@ export default new Router({
                 },
                 {
                     path: '/productList',
-                    component: resolve => require(['../views/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
+                    component: resolve => require(['../views/ProductList.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {
                     path: '/navbarMenu',
