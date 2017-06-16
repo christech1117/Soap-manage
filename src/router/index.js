@@ -19,35 +19,39 @@ export default new Router({
                 },
                 {
                     path: '/user',
-                    component: resolve => require(['../views/BaseTable.vue'], resolve)
+                    component: resolve => require(['../views/user.vue'], resolve)
                 },
                 {
                     path: '/news',
-                    component: resolve => require(['../views/VueTable.vue'], resolve)     // vue-datasource组件
+                    component: resolve => require(['../views/News.vue'], resolve)     // vue-datasource组件
                 },
                 {
                     path: '/comment',
-                    component: resolve => require(['../views/BaseForm.vue'], resolve)
+                    component: resolve => require(['../views/Comment.vue'], resolve)
                 },
                 {
                     path: '/productList',
-                    component: resolve => require(['../views/VueEditor.vue'], resolve)    // Vue-Quill-Editor组件
+                    component: resolve => require(['../views/ProductList.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {
                     path: '/navbarMenu',
-                    component: resolve => require(['../views/Markdown.vue'], resolve)     // Vue-Quill-Editor组件
+                    component: resolve => require(['../views/NavbarMenu.vue'], resolve)     // Vue-Quill-Editor组件
                 },
                 {
                     path: '/bannerMenu',
-                    component: resolve => require(['../views/Upload.vue'], resolve)       // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../views/BannerMenu.vue'], resolve)       // Vue-Core-Image-Upload组件
+                },
+                {
+                    path: '/ProductMenu',
+                    component: resolve => require(['../views/ProductMenu.vue'], resolve)       // Vue-Core-Image-Upload组件
                 },
                 {
                     path: '/lineChart',
-                    component: resolve => require(['../views/BaseCharts.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/chart/LineChart.vue'], resolve)   // vue-schart组件
                 },
                 {
                     path: '/barChart',
-                    component: resolve => require(['../views/BaseCharts.vue'], resolve)   // vue-schart组件
+                    component: resolve => require(['../components/chart/BarChart.vue'], resolve)   // vue-schart组件
                 },
                 {
                     path: '/pieChart',
@@ -59,7 +63,7 @@ export default new Router({
                 },
                 {
                     path: '/setting',
-                    component: resolve => require(['../views/DragList.vue'], resolve)    // 拖拽列表组件
+                    component: resolve => require(['../components/chart/MixChart.vue'], resolve)    // 拖拽列表组件
                 }
             ]
         },
