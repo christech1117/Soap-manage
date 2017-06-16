@@ -1,21 +1,15 @@
-<template>
-    <div class="login-wrap">
-        <div class="ms-title">後台管理系統</div>
-        <div class="ms-login">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
-                <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="username"></el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
-                </el-form-item>
-                <div class="login-btn">
-                    <el-button type="primary" @click="submitForm('ruleForm')">登入</el-button>
-                </div>
-                <p style="font-size:12px;line-height:30px;color:#999;">Tips : 用戶名和密碼隨便填。</p>
-            </el-form>
-        </div>
-    </div>
+<template lang="pug">
+.login-wrap
+  .ms-title 後台管理系統
+  .ms-login
+    el-form.demo-ruleForm(:model='ruleForm', :rules='rules', ref='ruleForm', label-width='0px')
+      el-form-item(prop='username')
+        el-input(v-model='ruleForm.username', placeholder='username')
+      el-form-item(prop='password')
+        el-input(type='password', placeholder='password', v-model='ruleForm.password', @keyup.enter.native="submitForm('ruleForm')")
+      .login-btn
+        el-button(type='primary', @click="submitForm('ruleForm')") 登入
+      p(style='font-size:12px;line-height:30px;color:#999;') Tips : 用戶名和密碼隨便填。
 </template>
 
 <script>

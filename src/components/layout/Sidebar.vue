@@ -1,18 +1,18 @@
 <template>
     <div class="sidebar">
         <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="light" unique-opened router>
-            <template v-for="item in items">
-                <template v-if="item.subs">
-                    <el-submenu :index="item.index">
-                        <template slot="title"><i :class="item.icon"></i><span>{{ item.title }}</span></template>
-                        <el-menu-item v-for="(subItem, i) in item.subs" :key="i" :index="subItem.index"><span>{{ subItem.title }}</span>
-                        <el-button type="success" :plain="true" size="small" v-if="item.subs[i].addButton">新增</el-button>
+            <template v-for="SideBarMenu in SideBarMenus">
+                <template v-if="SideBarMenu.subs">
+                    <el-submenu :index="SideBarMenu.index">
+                        <template slot="title"><i :class="SideBarMenu.icon"></i><span>{{ SideBarMenu.title }}</span></template>
+                        <el-menu-item v-for="(subItem, i) in SideBarMenu.subs" :key="i" :index="subItem.index"><span>{{ subItem.title }}</span>
+                        <el-button type="success" :plain="true" size="small" v-if="SideBarMenu.addButton">新增</el-button>
                         </el-menu-item>
                     </el-submenu>
                 </template>
                 <template v-else>
-                    <el-menu-item :index="item.index">
-                        <i :class="item.icon"></i><span>{{ item.title }}</span>
+                    <el-menu-item :index="SideBarMenu.index">
+                        <i :class="SideBarMenu.icon"></i><span>{{ SideBarMenu.title }}</span>
                     </el-menu-item>
                 </template>
             </template>
@@ -24,13 +24,13 @@
 export default {
     data () {
         return {
-            items: []
+            SideBarMenus: []
         }
     },
     mounted () {
-        this.axios.get('http://localhost:3000/items').then(response => {
+        this.axios.get('http://localhost:3000/SideBarMenus').then(response => {
         console.log(response.data)
-        this.items = response.data
+        this.SideBarMenus = response.data
         })
     }
 }
