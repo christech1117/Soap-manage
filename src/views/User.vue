@@ -10,7 +10,7 @@
     el-table-column(label='#', width='120')
       template(scope='scope')
         span {{ scope.row.id }}
-    el-table-column(prop='date', label='註冊日期', sortable='', width='180')
+    el-table-column(prop='create_at', label='註冊日期', sortable='', width='180')
     el-table-column(label='姓名', width='180')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', v-model='scope.row.name')
@@ -28,9 +28,6 @@
         el-switch(v-model='scope.row.auth', on-text='', off-text='', on-color='#13ce66')
     el-table-column(align='center', label='操作', width='300')
       template(scope='scope')
-        //
-          <el-button v-show="!scope.row.edit" size="" icon="edit" type="primary" @click="edit(scope.$index, users)">編輯</el-button>
-          <el-button v-show="scope.row.edit" size="" icon="check" type="success" @click="save(scope.$index, users)">完成</el-button>
         el-button(v-show='!scope.row.edit', type='primary', @click='scope.row.edit=true', size='', icon='edit') 编辑
         el-button(v-show='scope.row.edit', type='success', @click='scope.row.edit=false', size='', icon='check') 完成
         el-button(size='', icon='delete', type='danger', @click='handleDelete(scope.$index, users)') 刪除
@@ -77,6 +74,9 @@ export default {
                     message: '已取消删除'
                 });          
             });
+        },
+        handleCurrentChange () {
+            
         }
     }
 }

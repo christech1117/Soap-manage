@@ -5,7 +5,7 @@
       el-breadcrumb-item
         i.fa.fa-home
         |  Dashboard
-      el-breadcrumb-item 人員管理
+      el-breadcrumb-item 最新消息
       .top-option
         el-button(type='success' size='large' icon='check') 儲存
         el-button(type='info' size='large' icon='plus') 新增
@@ -13,7 +13,7 @@
     el-table-column(label='#', width='120')
       template(scope='scope')
         span {{ scope.row.id }}
-    el-table-column(prop='date', label='發佈日期', sortable='', width='180')
+    el-table-column(prop='create_at', label='發佈日期', sortable='', width='180')
     el-table-column(label='新聞圖片', width='180')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', v-model='scope.row.image')
@@ -73,6 +73,9 @@ export default {
                     message: '已取消删除'
                 });          
             });
+        },
+        handleCurrentChange () {
+            
         }
     }
 }

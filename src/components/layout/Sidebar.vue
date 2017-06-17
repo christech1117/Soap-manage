@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="activeIndex" class="el-menu-vertical-demo" theme="light" unique-opened router>
+        <el-menu class="el-menu-vertical-demo" theme="light" unique-opened router>
             <template v-for="SideBarMenu in SideBarMenus">
                 <template v-if="SideBarMenu.subs">
                     <el-submenu :index="SideBarMenu.index">

@@ -7,13 +7,13 @@
         |  Dashboard
       el-breadcrumb-item 商品管理
       .top-option
-        el-button(type='success' size='large' icon='check') 儲存
-        el-button(type='info' size='large' icon='plus') 新增
+        el-button(type='success' size='large' icon='check' @click="save") 儲存
+        el-button(type='info' size='large' icon='plus' @click="add()") 新增
   el-table(:data='products', border='', style='width: 100%')
     el-table-column(label='#', width='120')
       template(scope='scope')
         span {{ scope.row.id }}
-    el-table-column(prop='date', label='上架日期', sortable='', width='180')
+    el-table-column(prop='create_at', label='上架日期', sortable='', width='180')
     el-table-column(label='商品圖片', width='200', align='center')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', type='email', v-model='scope.row.image')
@@ -25,10 +25,10 @@
     el-table-column(label='評分')
       template(scope='scope')
         el-rate(v-model="scope.row.score", disabled, show-text, text-color="#ff9900", text-template="{value}")
-    el-table-column(label='折扣', width='120')
-      template(scope='scope')
-        el-input(v-show='scope.row.edit', size='small', type='number', v-model='scope.row.price')
-        span(v-show='!scope.row.edit') {{ scope.row.discount }}
+    // el-table-column(label='折扣', width='120')
+    //   template(scope='scope')
+    //     el-input(v-show='scope.row.edit', size='small', type='number', v-model='scope.row.price')
+    //     span(v-show='!scope.row.edit') {{ scope.row.discount }}
     el-table-column(label='售價', width='120')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', type='number', v-model='scope.row.price')
@@ -43,31 +43,58 @@
         el-button(size='', icon='delete', type='danger', @click='handleDelete(scope.$index, products)') 刪除
   .pagination
     el-pagination(@current-change='handleCurrentChange', layout='prev, pager, next', :total='100')
+  pre {{ products }}
 </template>
 
 <script>
 export default {
     data() {
         return {
-            products: []
+            products: [],
+            dialogPvVisible: false
         }
     },
     mounted () {
         this.axios.get('http://localhost:3000/products').then(response => {
-        console.log(response.data)
-        this.products = response.data
+            console.log(response.data)
+            this.products = response.data
         })
     },
     methods: {
+        add () {
+            this.$prompt('请输入邮箱', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+            inputErrorMessage: '邮箱格式不正确'
+        }).then(({ value }) => {
+            this.axios.post('http://localhost:3000/products', value).then(response => {
+                console.log(response.data)
+                this.products = response.data
+            })
+          this.$message({
+            type: 'success',
+            message: '你的邮箱是: ' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });       
+        });
+        },
         edit (index, rows) {
             console.log(rows[index])
         },
-        save (index, rows) {   
-            rows.editAble = false
-            console.log(rows.editAble)
+        save () {   
+            this.$notify({
+                // title: '儲存成功',
+                message: '儲存成功',
+                type: 'success'
+            });
         },
         handleDelete (index, rows) {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -83,6 +110,9 @@ export default {
                     message: '已取消删除'
                 });          
             });
+        },
+        handleCurrentChange () {
+            
         }
     }
 }
