@@ -11,7 +11,7 @@ export default new Router({
         },
         {
             path: '/dashboard',
-            component: resolve => require(['../components/layout/Home.vue'], resolve),
+            component: resolve => require(['../components/layout'], resolve),
             children:[
                 {
                     path: '/',
@@ -30,7 +30,7 @@ export default new Router({
                     component: resolve => require(['../views/Comment.vue'], resolve)
                 },
                 {
-                    path: '/productList',
+                    path: '/product',
                     component: resolve => require(['../views/ProductList.vue'], resolve)    // Vue-Quill-Editor组件
                 },
                 {

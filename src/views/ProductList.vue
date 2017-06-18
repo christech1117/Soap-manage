@@ -46,7 +46,7 @@
     // pre {{ products }}
 
   el-dialog(title='商品資料', :visible.sync='dialogFormVisible')
-    el-form(:model='addProduct')
+    el-form(:model='productTemp')
         el-form-item(label='商品圖片', :label-width='formLabelWidth')
             el-upload.upload-demo(drag='', action='https://httpbin.org/post', multiple='' :on-success="handleImageSuccess")
                 img(v-if="imageUrl" :src="imageUrl" class="avatar")
@@ -56,16 +56,18 @@
                     em 點擊上傳
                 .el-upload__tip(slot='tip') 只能上傳jpg/png的圖片格式，且不超過500kb
         el-form-item(label='商品名稱', :label-width='formLabelWidth')
-            el-input(v-model='addProduct.name', auto-complete='off')
+            el-input(v-model='productTemp.name', auto-complete='off')
         el-form-item(label='商品價格', :label-width='formLabelWidth')
-            el-input(v-model='addProduct.price', auto-complete='off' type='number')
+            el-input(v-model='productTemp.price', auto-complete='off' type='number')
+        el-form-item(label='商品折扣', :label-width='formLabelWidth')
+            el-input(v-model='productTemp.discount', auto-complete='off' type='number')
         el-form-item(label='商品上架', :label-width='formLabelWidth')
-            el-switch(v-model='addProduct.auth', on-text='', off-text='', on-color='#13ce66')
+            el-switch(v-model='productTemp.auth', on-text='', off-text='', on-color='#13ce66')
     .dialog-footer(slot='footer')
         el-button(@click='dialogFormVisible = false') 取消
         el-button(v-if="dialogStatus=='create'" type='primary', @click='add') 確定
         el-button(v-else type='primary', @click='update') 確定
-    // pre {{ this.addProduct}}
+    // pre {{ this.productTemp}}
 </template>
 
 <script>
@@ -75,9 +77,10 @@ export default {
             products: [],
             dialogFormVisible: false,
             dialogStatus: '',
-            addProduct: {
+            productTemp: {
                 name: '',
                 price: '',
+                discount: 1,
                 image: '',
                 edit: false,
                 auth: true,
@@ -108,18 +111,18 @@ export default {
                 type: 'success',
                 duration: 2000
             })
-            this.axios.post('http://localhost:3000/products', this.addProduct).then(response => {
+            this.axios.post('http://localhost:3000/products', this.productTemp).then(response => {
                 // console.log(response.data)
             })
         },
         handleUpdate (index, rows) {
             this.dialogFormVisible = true
-            this.addProduct.id = rows[index].id
-            this.addProduct.name = rows[index].name
-            this.addProduct.price = rows[index].price
-            this.addProduct.image = rows[index].image
-            this.addProduct.score = rows[index].score
-            this.addProduct.auth = rows[index].auth
+            this.productTemp.id = rows[index].id
+            this.productTemp.name = rows[index].name
+            this.productTemp.price = rows[index].price
+            this.productTemp.image = rows[index].image
+            this.productTemp.score = rows[index].score
+            this.productTemp.auth = rows[index].auth
         },
         update () {
             this.dialogFormVisible = false
@@ -129,19 +132,19 @@ export default {
                 type: 'success',
                 duration: 2000
             })
-            this.axios.patch('http://localhost:3000/products/' + this.addProduct.id, this.addProduct).then(response => {
-                // console.log(this.addProduct.id)
+            this.axios.patch('http://localhost:3000/products/' + this.productTemp.id, this.productTemp).then(response => {
+                // console.log(this.productTemp.id)
             })    
         },
         resetTemp () {
-            this.userTemp = {
+            this.productTemp = {
                 name: '',
+                price: '',
+                discount: 1,
                 image: '',
-                mail: '',
-                phone: '',
-                tag: '公司',
                 edit: false,
                 auth: true,
+                score: 0,
                 create_at: new Date().toJSON().slice(0,10).replace(/-/g,'/')
             }
         },

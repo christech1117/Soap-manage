@@ -14,11 +14,11 @@
       template(scope='scope')
         span {{ scope.row.id }}
     el-table-column(prop='create_at', label='發佈日期', sortable='', width='180')
-    el-table-column(label='新聞圖片', width='200', align='center')
+    el-table-column(label='消息圖片', width='200', align='center')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', type='email', v-model='scope.row.image')
         .cover(v-show='!scope.row.edit', :style="{ 'background-image': `url(${scope.row.image})`}")
-    el-table-column(label='新聞標題')
+    el-table-column(label='消息標題')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', v-model='scope.row.name')
         span(v-show='!scope.row.edit') {{ scope.row.title }}
@@ -34,9 +34,9 @@
     el-pagination(@current-change='handleCurrentChange', layout='prev, pager, next', :total='100')
     // pre {{ news }}
 
-  el-dialog(title='新聞資料', :visible.sync='dialogFormVisible')
+  el-dialog(title='消息資料', :visible.sync='dialogFormVisible')
     el-form(:model='newsTemp')
-        el-form-item(label='新聞圖片', :label-width='formLabelWidth')
+        el-form-item(label='消息圖片', :label-width='formLabelWidth')
             el-upload.upload-demo(drag='', action='https://httpbin.org/post', multiple='' :on-success="handleImageSuccess")
                 img(v-if="imageUrl" :src="imageUrl" class="avatar")
                 i.el-icon-upload
