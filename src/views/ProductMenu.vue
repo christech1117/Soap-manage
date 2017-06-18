@@ -12,7 +12,7 @@
         span {{ scope.row.id }}
     el-table-column(label='標題')
       template(scope='scope')
-        el-input(v-show='scope.row.edit', size='small', v-model='scope.row.title')
+        el-input(v-show='scope.row.edit', size='small', v-model='scope.row.title' maxlength='6')
         span(v-show='!scope.row.edit') {{ scope.row.title }}
     el-table-column(align='center', label='操作', width='300')
       template(scope='scope')

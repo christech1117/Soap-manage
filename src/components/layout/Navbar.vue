@@ -9,7 +9,7 @@
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="loginout">帳戶設定</el-dropdown-item>
+                    <!--<el-dropdown-item command="loginout">帳戶設定</el-dropdown-item>-->
                     <el-dropdown-item command="loginout">登出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>

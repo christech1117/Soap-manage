@@ -1,95 +1,261 @@
-<template lang="pug">
-div
-  .crumbs
-    el-breadcrumb(separator='/')
-      el-breadcrumb-item
-        i.el-icon-setting
-        |  自述
-  .ms-doc
-    h3 README.md
-    article
-      h1 manage-system
-      p 基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案
-      h2 前言
-      p
-        | 之前在公司用了Vue + Element组件库做了个后台管理系统，基本很多组件可以直接引用组件库的，但是也有一些需求无法满足。像图片裁剪上传、富文本编辑器、图表等这些在后台管理系统中很常见的功能，就需要引用其他的组件才能完成。从寻找组件，到使用组件的过程中，遇到了很多问题，也积累了宝贵的经验。所以我就把开发这个后台管理系统的经验，总结成这个后台管理系统解决方案。
-      p
-        | 该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于vue.js,使用vue-cli脚手架快速生成项目目录，引用Element UI组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
-      h2 功能
-      el-checkbox(disabled='', checked='') Element UI
-      br
-      el-checkbox(disabled='', checked='') 登录/注销
-      br
-      el-checkbox(disabled='', checked='') 表格
-      br
-      el-checkbox(disabled='', checked='') 表单
-      br
-      el-checkbox(disabled='', checked='') 图表
-      br
-      el-checkbox(disabled='', checked='') 富文本编辑器
-      br
-      el-checkbox(disabled='', checked='') markdown编辑器
-      br
-      el-checkbox(disabled='', checked='') 图片拖拽/裁剪上传
-      br
-      el-checkbox(disabled='', checked='') 支持切换主题色
-      br
-      el-checkbox(disabled='', checked='') 列表拖拽排序
-      br
-
+<template>
+    <div :class="className" :id="id" :style="{height:height,width:width}"></div>
 </template>
-
 <script>
+    // 引入 ECharts 主模块
+    const echarts = require('echarts/lib/echarts');
+    require('echarts/lib/chart/bar');
+    require('echarts/lib/chart/line');
+    // 引入提示框和标题组件
+    require('echarts/lib/component/tooltip');
+    require('echarts/lib/component/title');
+    require('echarts/lib/component/legend');
+    require('echarts/lib/component/dataZoom');
     export default {
-        data: function(){
-            return {}
+      name: 'barPercent',
+      props: {
+        className: {
+          type: String,
+          default: 'chart'
+        },
+        id: {
+          type: String,
+          default: 'chart'
+        },
+        width: {
+          type: String,
+          default: '100%'
+        },
+        height: {
+          type: String,
+          default: '100%'
         }
+      },
+      data() {
+        return {};
+      },
+      mounted() {
+        this.initChart();
+      },
+      methods: {
+        initChart() {
+          this.chart = echarts.init(document.getElementById(this.id));
+          const xData = (function() {
+            const data = [];
+            for (let i = 1; i < 13; i++) {
+              data.push(i + '月份');
+            }
+            return data;
+          }());
+          this.chart.setOption({
+            backgroundColor: '#344b58',
+            title: {
+              text: '長條圖',
+              subtext: 'from http://gallery.echartsjs.com',
+              x: '4%',
+              textStyle: {
+                color: '#fff',
+                fontSize: '22'
+              },
+              subtextStyle: {
+                color: '#90979c',
+                fontSize: '16'
+              }
+            },
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                textStyle: {
+                  color: '#fff'
+                }
+              }
+            },
+            grid: {
+              borderWidth: 0,
+              top: 110,
+              bottom: 95,
+              textStyle: {
+                color: '#fff'
+              }
+            },
+            legend: {
+              x: '15%',
+              top: '10%',
+              textStyle: {
+                color: '#90979c'
+              },
+              data: ['女', '男', '平均']
+            },
+            calculable: true,
+            xAxis: [{
+              type: 'category',
+              axisLine: {
+                lineStyle: {
+                  color: '#90979c'
+                }
+              },
+              splitLine: {
+                show: false
+              },
+              axisTick: {
+                show: false
+              },
+              splitArea: {
+                show: false
+              },
+              axisLabel: {
+                interval: 0
+              },
+              data: xData
+            }],
+            yAxis: [{
+              type: 'value',
+              splitLine: {
+                show: false
+              },
+              axisLine: {
+                lineStyle: {
+                  color: '#90979c'
+                }
+              },
+              axisTick: {
+                show: false
+              },
+              axisLabel: {
+                interval: 0
+              },
+              splitArea: {
+                show: false
+              }
+            }],
+            dataZoom: [{
+              show: true,
+              height: 30,
+              xAxisIndex: [
+                0
+              ],
+              bottom: 30,
+              start: 10,
+              end: 80,
+              handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
+              handleSize: '110%',
+              handleStyle: {
+                color: '#d3dee5'
+              },
+              textStyle: {
+                color: '#fff' },
+              borderColor: '#90979c'
+            }, {
+              type: 'inside',
+              show: true,
+              height: 15,
+              start: 1,
+              end: 35
+            }],
+            series: [{
+              name: '女',
+              type: 'bar',
+              stack: '总量',
+              barMaxWidth: 35,
+              barGap: '10%',
+              itemStyle: {
+                normal: {
+                  color: 'rgba(255,144,128,1)',
+                  label: {
+                    show: true,
+                    textStyle: {
+                      color: '#fff'
+                    },
+                    position: 'insideTop',
+                    formatter(p) {
+                      return p.value > 0 ? p.value : '';
+                    }
+                  }
+                }
+              },
+              data: [
+                709,
+                1917,
+                2455,
+                2610,
+                1719,
+                1433,
+                1544,
+                3285,
+                5208,
+                3372,
+                2484,
+                4078
+              ]
+            },
+            {
+              name: '男',
+              type: 'bar',
+              stack: '总量',
+              itemStyle: {
+                normal: {
+                  color: 'rgba(0,191,183,1)',
+                  barBorderRadius: 0,
+                  label: {
+                    show: true,
+                    position: 'top',
+                    formatter(p) {
+                      return p.value > 0 ? p.value : '';
+                    }
+                  }
+                }
+              },
+              data: [
+                327,
+                1776,
+                507,
+                1200,
+                800,
+                482,
+                204,
+                1390,
+                1001,
+                951,
+                381,
+                220
+              ]
+            }, {
+              name: '平均',
+              type: 'line',
+              stack: '总量',
+              symbolSize: 10,
+              symbol: 'circle',
+              itemStyle: {
+                normal: {
+                  color: 'rgba(252,230,48,1)',
+                  barBorderRadius: 0,
+                  label: {
+                    show: true,
+                    position: 'top',
+                    formatter(p) {
+                      return p.value > 0 ? p.value : '';
+                    }
+                  }
+                }
+              },
+              data: [
+                1036,
+                3693,
+                2962,
+                3810,
+                2519,
+                1915,
+                1748,
+                4675,
+                6209,
+                4323,
+                2865,
+                4298
+              ]
+            }
+            ]
+          })
+        }
+      }
     }
 </script>
-
-<style scoped>
-    .ms-doc{
-        width:100%;
-        max-width: 980px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-    .ms-doc h3{
-        padding: 9px 10px 10px;
-        margin: 0;
-        font-size: 14px;
-        line-height: 17px;
-        background-color: #f5f5f5;
-        border: 1px solid #d8d8d8;
-        border-bottom: 0;
-        border-radius: 3px 3px 0 0;
-    }
-    .ms-doc article{
-        padding: 45px;
-        word-wrap: break-word;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-bottom-right-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
-    .ms-doc article h1{
-        font-size:32px;
-        padding-bottom: 10px;
-        margin-bottom: 15px;
-        border-bottom: 1px solid #ddd;
-    }
-    .ms-doc article h2 {
-        margin: 24px 0 16px;
-        font-weight: 600;
-        line-height: 1.25;
-        padding-bottom: 7px;
-        font-size: 24px;
-        border-bottom: 1px solid #eee;
-    }
-    .ms-doc article p{
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-    .ms-doc article .el-checkbox{
-        margin-bottom: 5px;
-    }
-</style>

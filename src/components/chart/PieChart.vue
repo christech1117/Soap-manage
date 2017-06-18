@@ -58,7 +58,7 @@
             this.chart.setOption({
             backgroundColor: '#fff',
                 title: {
-                    text: '注册资金',
+                    text: '統計數據',
                     subtext: '2016年',
                     x: 'center',
                     y: 'center',

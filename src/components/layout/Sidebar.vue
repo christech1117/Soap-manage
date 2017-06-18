@@ -29,7 +29,7 @@ export default {
     },
     mounted () {
         this.axios.get('http://localhost:3000/SideBarMenus').then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         this.SideBarMenus = response.data
         })
     }
