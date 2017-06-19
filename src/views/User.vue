@@ -187,23 +187,27 @@ export default {
     }
 }
 </script>
-<style>
 
-.el-table, .el-input {
-    font-size: 1.2rem;
-}
-.el-table-column {
-    transition: all 1s;
-}
-  .cover {
-    width: 120px;
-    height: 100px;
-    background-color: #eee;
-    position: relative;
-    background-size: 100% auto;
-    background-position: center center;
-    background-repeat: no-repeat;
-    transition: 0.5s;
-  }
+<style scoped>
+    .el-table, .el-input {
+        font-size: 1.2rem;
+    }
+        
+
+    .el-table-column {
+        transition: all 1s;
+    }
+        
+
+    .cover {
+        width: 120px;
+        height: 100px;
+        background-color: #eee;
+        position: relative;
+        background-size: 100% auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+        transition: 0.5s;
+    }
 
 </style>

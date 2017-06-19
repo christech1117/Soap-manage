@@ -18,7 +18,7 @@
     {
       "icon": "fa fa-commenting fa-lg",
       "index": "/news",
-      "title": "最新消息",
+      "title": "最新消息管理",
       "addButton": true
     },
     {
@@ -29,9 +29,18 @@
     },
     {
       "icon": "fa fa-file-text fa-lg",
-      "index": "/order",
+      "index": "3",
       "title": "訂單管理",
-      "addButton": true
+      "subs": [
+        {
+          "index": "/order",
+          "title": "訂單瀏覽"
+        },
+        {
+          "index": "/order",
+          "title": "未出貨訂單商品"
+        }
+      ]
     },
     {
       "icon": "fa fa-bars fa-lg",
@@ -41,6 +50,10 @@
         {
           "index": "/navbarMenu",
           "title": "頂部目錄管理"
+        },
+        {
+          "index": "/bennerMenu",
+          "title": "頂部圖片管理"
         },
         {
           "index": "/productMenu",
