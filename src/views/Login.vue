@@ -11,40 +11,40 @@
         el-button(type='primary', @click="submitForm('ruleForm')") 登入
       p(style='font-size:12px;line-height:30px;color:#999;') Tips : 用戶名和密碼隨便填。
 </template>
-
+script
 <script>
-    export default {
-        data: function(){
-            return {
-                ruleForm: {
-                    username: '',
-                    password: ''
-                },
-                rules: {
-                    username: [
-                        { required: true, message: '輸入帳號', trigger: 'blur' }
-                    ],
-                    password: [
-                        { required: true, message: '輸入密碼', trigger: 'blur' }
-                    ]
+export default {
+  data: function(){
+    return {
+      ruleForm: {
+        username: '',
+        password: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '輸入帳號', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '輸入密碼', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+    methods: {
+        submitForm(formName) {
+            const self = this;
+            self.$refs[formName].validate((valid) => {
+                if (valid) {
+                    localStorage.setItem('ms_username',self.ruleForm.username);
+                    self.$router.push('/dashboard');
+                } else {
+                    console.log('error submit!!');
+                    return false;
                 }
-            }
-        },
-        methods: {
-            submitForm(formName) {
-                const self = this;
-                self.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/dashboard');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
-            }
+            });
         }
     }
+}
 </script>
 
 <style scoped>

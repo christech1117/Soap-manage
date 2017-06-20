@@ -81,12 +81,10 @@ export default {
     }
 }
 </script>
-<style>
-
-.el-table, .el-input {
-    font-size: 1.2rem;
-}
-.el-table-column {
-    transition: all 1s;
-}
+<style lang="sass">
+.el-table, .el-input 
+  font-size: 1.2rem
+   
+.el-table-column
+  transition: all 1s
 </style>

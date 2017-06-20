@@ -92,122 +92,126 @@ export default {
         }
     },
     mounted () {
-        this.axios.get('http://localhost:3000/users').then(response => {
-            console.log(response.data)
-            this.users = response.data
-        })
+      this.getData()
     },
     methods: {
-        handleAdd () {
-            this.resetTemp()
-            this.dialogStatus = 'create';
-            this.dialogFormVisible = true
-        },
-        add () {
-            this.dialogFormVisible = false
-            this.$notify({
-                title: '成功',
-                message: '創建成功',
-                type: 'success',
-                duration: 2000
-            })
-            this.axios.post('http://localhost:3000/users', this.userTemp).then(response => {
-                // console.log(response.data)
-            })
-        },
-        resetTemp () {
-            this.userTemp = {
-                name: '',
-                image: '',
-                mail: '',
-                phone: '',
-                tag: '公司',
-                edit: false,
-                auth: true,
-                create_at: new Date().toJSON().slice(0,10).replace(/-/g,'/')
-            }
-        },
-        handleUpdate (index, rows) {
-            this.dialogFormVisible = true
-            this.userTemp.id = rows[index].id
-            this.userTemp.name = rows[index].name
-            this.userTemp.image = rows[index].image
-            this.userTemp.mail = rows[index].mail
-            this.userTemp.phone = rows[index].phone
-            this.userTemp.auth = rows[index].auth
-        },
-        update () {
-            this.dialogFormVisible = false
-            this.$notify({
-                title: '成功',
-                message: '編輯成功',
-                type: 'success',
-                duration: 2000
-            })
-            this.axios.patch('http://localhost:3000/users/' + this.userTemp.id, this.userTemp).then(response => {
-                // console.log(this.userTemp.id)
-            })
-        },
-        save () {   
-            this.$notify({
-                // title: '儲存成功',
-                message: '儲存成功',
-                type: 'success'
-            });
-        },
-        handleDelete (index, rows) {
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-            }).then(() => {
-                rows.splice(index, 1)
-                // this.axios.delete('http://localhost:3000/users/' + rows[index].id, rows.splice(index, 1)).then(response => {
-                // // console.log(response.data)
-                // })
-                
-                this.$notify({
-                    type: 'success',
-                    message: '删除成功!'
-                });
-            }).catch(() => {
-                this.$notify({
-                    type: 'info',
-                    message: '已取消删除'
-                });          
-            });
-        },
-        handleImageSuccess () {
-            this.imageUrl = URL.createObjectURL(file.raw);
-            console.log(this.imageUrl)
-        },
-        handleCurrentChange () {
-            
-        }
+      getData () {
+        this.axios.get('http://localhost:3000/users').then(response => {
+          console.log(response.data)
+          this.users = response.data
+        })
+      },
+      handleAdd () {
+          this.resetTemp()
+          this.dialogStatus = 'create';
+          this.dialogFormVisible = true
+      },
+      add () {
+          this.dialogFormVisible = false
+          this.$notify({
+              title: '成功',
+              message: '創建成功',
+              type: 'success',
+              duration: 2000
+          })
+          this.axios.post('http://localhost:3000/users', this.userTemp).then(response => {
+              // console.log(response.data)
+              this.getData()
+          })
+      },
+      resetTemp () {
+          this.userTemp = {
+              name: '',
+              image: '',
+              mail: '',
+              phone: '',
+              tag: '公司',
+              edit: false,
+              auth: true,
+              create_at: new Date().toJSON().slice(0,10).replace(/-/g,'/')
+          }
+      },
+      handleUpdate (index, rows) {
+          this.dialogFormVisible = true
+          this.userTemp.id = rows[index].id
+          this.userTemp.name = rows[index].name
+          this.userTemp.image = rows[index].image
+          this.userTemp.mail = rows[index].mail
+          this.userTemp.phone = rows[index].phone
+          this.userTemp.auth = rows[index].auth
+      },
+      update () {
+          this.dialogFormVisible = false
+          this.$notify({
+              title: '成功',
+              message: '編輯成功',
+              type: 'success',
+              duration: 2000
+          })
+          this.axios.patch('http://localhost:3000/users/' + this.userTemp.id, this.userTemp).then(response => {
+              // console.log(this.userTemp.id)
+              this.getData()
+          })
+      },
+      save () {   
+          this.$notify({
+              // title: '儲存成功',
+              message: '儲存成功',
+              type: 'success'
+          });
+      },
+      handleDelete (index, rows) {
+          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+          }).then(() => {
+              rows.splice(index, 1)
+              // this.axios.delete('http://localhost:3000/users/' + rows[index].id, rows.splice(index, 1)).then(response => {
+              // // console.log(response.data)
+              // })
+              
+              this.$notify({
+                  type: 'success',
+                  message: '删除成功!'
+              });
+          }).catch(() => {
+              this.$notify({
+                  type: 'info',
+                  message: '已取消删除'
+              });          
+          });
+      },
+      handleImageSuccess () {
+          this.imageUrl = URL.createObjectURL(file.raw);
+          console.log(this.imageUrl)
+      },
+      handleCurrentChange () {
+          
+      }
     }
 }
 </script>
 
 <style scoped>
-    .el-table, .el-input {
-        font-size: 1.2rem;
-    }
-        
+.el-table, .el-input {
+    font-size: 1.2rem;
+}
+    
 
-    .el-table-column {
-        transition: all 1s;
-    }
-        
+.el-table-column {
+    transition: all 1s;
+}
+    
 
-    .cover {
-        width: 120px;
-        height: 100px;
-        background-color: #eee;
-        position: relative;
-        background-size: 100% auto;
-        background-position: center center;
-        background-repeat: no-repeat;
-        transition: 0.5s;
-    }
-
+.cover {
+    width: 120px;
+    height: 100px;
+    background-color: #eee;
+    position: relative;
+    background-size: 100% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: 0.5s;
+}
 </style>
