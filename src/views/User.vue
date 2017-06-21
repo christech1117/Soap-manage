@@ -10,10 +10,13 @@
         // el-button(type='success' size='large' icon='check' @click="update") 儲存
         el-button(type='info' size='large' icon='plus' @click="handleAdd") 新增
   el-table(:data='users', border='', style='width: 100%')
-    el-table-column(label='#', width='120')
+    el-table-column(label='序號', width='120')
       template(scope='scope')
         span {{ scope.row.id }}
     el-table-column(prop='create_at', label='註冊日期', sortable='', width='180')
+        template(scope="scope")
+            el-icon(name="time")
+            span(style="margin-left: 10px") {{ scope.row.create_at }}
     el-table-column(label='大頭貼', width='200', align='center')
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', type='email', v-model='scope.row.image')
@@ -22,6 +25,8 @@
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', v-model='scope.row.name')
         span(v-show='!scope.row.edit') {{ scope.row.name }}
+        el-tag(v-if='scope.row.auth==true' type="success") 授權
+        el-tag(v-else type="danger") 停權
     el-table-column(label='信箱')
       template(scope='scope')
         span(v-show='!scope.row.edit') {{ scope.row.mail }}
@@ -33,9 +38,6 @@
       template(scope='scope')
         el-input(v-show='scope.row.edit', size='small', type='number', v-model='scope.row.price')
         span(v-show='!scope.row.edit') {{ scope.row.phone }}
-    el-table-column(label='權限', width='120')
-      template(scope='scope')
-        el-switch(v-model='scope.row.auth', on-text='啟用', off-text='停權', on-color='#13ce66')
     el-table-column(align='center', label='操作', width='300')
       template(scope='scope')
         el-button(v-show='!scope.row.edit', type='primary', @click='handleUpdate(scope.$index, users)', size='', icon='edit') 編輯
@@ -213,5 +215,9 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     transition: 0.5s;
+}
+
+.el-tag {
+    margin-left: 1rem
 }
 </style>

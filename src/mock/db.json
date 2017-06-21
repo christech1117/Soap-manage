@@ -6,11 +6,6 @@
       "title": "Dashboard"
     },
     {
-      "icon": "fa fa-home fa-lg",
-      "index": "/home",
-      "title": "首頁管理"
-    },
-    {
       "icon": "fa fa-user fa-lg",
       "index": "/user",
       "title": "會員管理"
@@ -20,6 +15,11 @@
       "index": "/news",
       "title": "最新消息管理",
       "addButton": true
+    },
+    {
+      "icon": "fa fa-paper-plane fa-lg",
+      "index": "/message",
+      "title": "信息框架管理"
     },
     {
       "icon": "fa fa-shopping-cart fa-lg",
@@ -77,10 +77,47 @@
       ]
     },
     {
+      "icon": "fa fa-home fa-lg",
+      "index": "6",
+      "title": "門市資料管理",
+      "subs": [
+        {
+          "index": "/about",
+          "title": "品牌介紹頁面"
+        },
+        {
+          "index": "/contact",
+          "title": "聯絡我們頁面"
+        }
+      ]
+    },
+    {
+      "icon": "fa fa-paperclip fa-lg",
+      "index": "7",
+      "title": "其他",
+      "subs": [
+        {
+          "index": "/about",
+          "title": "隱私權政策頁面"
+        },
+        {
+          "index": "/contact",
+          "title": "免責聲明頁面"
+        },
+        {
+          "index": "/contact",
+          "title": "使用條款頁面"
+        },
+        {
+          "index": "/contact",
+          "title": "購物須知頁面"
+        }
+      ]
+    },
+    {
       "icon": "fa fa-cog fa-lg",
       "index": "/setting",
-      "title": "設置",
-      "addButton": true
+      "title": "設置"
     }
   ],
   "NavBarMenus": [
@@ -174,18 +211,18 @@
   "users": [
     {
       "id": 1,
-      "create_at": "2017/06/20",
+      "create_at": "2017/06/21",
       "name": "劉秀",
       "image": "https://i2.kknews.cc/large/ba40005787a346d7035",
       "mail": "abcc456@yahoo.com.tw",
       "phone": "0920-123-201",
       "tag": "公司",
       "edit": false,
-      "auth": true
+      "auth": false
     },
     {
       "id": 2,
-      "create_at": "2016-05-04",
+      "create_at": "2017/06/21",
       "name": "陰麗華",
       "image": "http://juji123.com/img2/role/00/08/71/p00087154.jpg",
       "mail": "abcc45678@gmail.com",
@@ -196,14 +233,14 @@
     },
     {
       "id": 3,
-      "create_at": "2016-05-01",
+      "create_at": "2017/06/21",
       "name": "馮異",
       "image": "http://static.zhidao.manmankan.com/kimages/201607/25_1469419129144715.png",
       "mail": "jasidjasi@gmail.com",
       "phone": "0920-123-456",
-      "tag": "家",
+      "tag": "公司",
       "edit": false,
-      "auth": true
+      "auth": false
     },
     {
       "id": 4,
@@ -229,7 +266,7 @@
     },
     {
       "id": 6,
-      "create_at": "2016-05-08",
+      "create_at": "2017/06/21",
       "name": "陰識",
       "image": "http://img1.gtimg.com/ent/pics/hv1/165/135/2105/136912215.jpg",
       "mail": "abcc456@yahoo.com.tw",
@@ -292,6 +329,17 @@
       "tag": "公司",
       "edit": false,
       "auth": true
+    },
+    {
+      "name": "",
+      "image": "",
+      "mail": "",
+      "phone": "",
+      "tag": "公司",
+      "edit": false,
+      "auth": false,
+      "create_at": "2017/06/21",
+      "id": 12
     }
   ],
   "products": [
@@ -303,7 +351,7 @@
       "edit": false,
       "auth": true,
       "score": 4,
-      "create_at": "2017/06/18",
+      "create_at": "2017/06/20",
       "id": 1
     },
     {
@@ -446,8 +494,8 @@
       "image": "https://www.taiwansoap.com.tw/_upload/htmlEdit/1475812275.jpg",
       "description": "在翩翩香氣裡我們循著記憶的軌跡重返心靈歸屬之地\n在溫柔的力量中重拾初心的美好\n在植物芬芳中延續展開，轉化成人生旅途上的美好\n讓植物化開的芳香因子引領我們至美好純淨之地\n拈一朵花品芬芳精油芬芳，心手呵護\n乳油木果油、天然大豆萃取、醣基海藻糖、阿原複方精油，保濕滋潤、修護活化肌膚\n玫瑰護手霜(滋潤)-酵母及磨菇萃取等滋養成分，賦予肌膚保濕彈性，適合手部乾燥者\n橙花護手霜(保濕)-小黃瓜萃取及獨特鎖水磁石長效保濕成分，適合手部需要保濕潤澤者\n茉莉護手霜(透亮)-吟釀麴及桑白皮萃取淨白成分，適合手部黯沉者\n苦橙葉護手霜(修護)-積雪草、洋甘菊舒緩修護成分，適合手部粗糙、需加強養護者\n亮澤豐潤，唇真動人\n乳油木果油、蜂蠟、可可籽脂、阿原複方精油，保濕潤澤、增強肌膚防護力\n玫瑰護唇膏(滋潤)-荷荷芭油及玫瑰果籽油強化滋潤，適合唇部需要高度滋潤者\n燕麥護唇膏(倍護)-燕麥仁萃取及桃拓酚植萃配方，無精油添加，適合唇部敏感脆弱、兒童等\n檸檬護唇膏(透亮)-葡萄籽油及油茶籽油，增加唇部透亮豐盈，適合唇部需要光量潤澤者\n苦橙葉護唇膏(修護)-楔基海帶萃取舒緩防護雙唇，適合唇部需要修護防護者",
       "edit": false,
-      "auth": false,
-      "create_at": "2017/06/18"
+      "auth": true,
+      "create_at": "2017/06/20"
     },
     {
       "id": 2,
