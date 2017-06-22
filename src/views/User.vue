@@ -9,17 +9,16 @@
       .top-option
         // el-button(type='success' size='large' icon='check' @click="update") 儲存
         el-button(type='info' size='large' icon='plus' @click="handleAdd") 新增
-  el-table(:data='users', border fit, style='width: 100%')
-    el-table-column(label='序號', width='120')
+  el-table(:data='users',border, style='width: 100%')
+    el-table-column(label='序號', width='100')
       template(scope='scope')
         span {{ scope.row.id }}
     el-table-column(prop='create_at', label='註冊日期', sortable='', width='180')
         template(scope="scope")
-            el-icon(name="time")
-            span(style="margin-left: 10px") {{ scope.row.create_at }}
-    el-table-column(label='大頭貼', width='200')
+          el-icon(name="time")
+          span(style="margin-left: 10px") {{ scope.row.create_at }}
+    el-table-column(label='大頭貼', width='150')
       template(scope='scope')
-        el-input(v-show='scope.row.edit', size='small', type='email', v-model='scope.row.image')
         .cover(v-show='!scope.row.edit', :style="{ 'background-image': `url(${scope.row.image})`}")
     el-table-column(label='姓名', width='200')
       template(scope='scope')
@@ -27,7 +26,7 @@
         span(v-show='!scope.row.edit') {{ scope.row.name }}
         el-tag(v-if='scope.row.auth==true' type="success") 授權
         el-tag(v-else type="danger") 停權
-    el-table-column(label='信箱', width='400')
+    el-table-column(label='信箱', width='300')
       template(scope='scope')
         span(v-show='!scope.row.edit') {{ scope.row.mail }}
     // el-table-column(label='折扣', width='120')
@@ -41,7 +40,6 @@
     el-table-column(align='center', label='操作')
       template(scope='scope')
         el-button(v-show='!scope.row.edit', type='primary', @click='handleUpdate(scope.$index, users)', size='', icon='edit') 編輯
-        el-button(v-show='scope.row.edit', type='success', @click='scope.row.edit=false', size='', icon='check') 完成
         el-button(size='', icon='delete', type='danger', @click='handleDelete(scope.$index, users)') 刪除
   .pagination
     el-pagination(@current-change='handleCurrentChange', layout='prev, pager, next', :total='100')
@@ -52,7 +50,7 @@
           el-upload.avatar-uploader(action='http://localhost:3000/images/', :show-file-list='false', :on-success='handleAvatarSuccess', :before-upload='beforeAvatarUpload')
             img.avatar(v-if='imageUrl', :src='imageUrl')
             i.el-icon-plus.avatar-uploader-icon(v-else='')
-          pre {{ this.userTemp }}
+        //-   pre {{ this.userTemp }}
         el-form-item(prop='name', label='姓名', :label-width='formLabelWidth')
           el-input(v-model='userTemp.name', auto-complete='off', v-validate="'required|max:8'", name='name', type='text', placeholder='Name')
           span.is-danger(v-show="errors.has('name')") {{ errors.first('name') }}
@@ -147,7 +145,6 @@ export default {
       this.userTemp.auth = rows[index].auth
     },
     update () {
-      this.resetTemp()
       this.dialogFormVisible = false
       this.$notify({
         title: '成功',
@@ -156,7 +153,7 @@ export default {
         duration: 2000
       })
       this.axios.patch('http://localhost:3000/users/' + this.userTemp.id, this.userTemp).then(response => {
-        // console.log(this.userTemp.id)
+        console.log(this.userTemp.id)
         this.getData()
       })
     },
@@ -228,7 +225,10 @@ export default {
 <style scoped lang="sass">
 .el-table
   font-size: 1.2rem
-
+  word-break: break-all
+.input-label
+  font-size: 14px
+  
 .el-table-column
   transition: all 1s   
 
@@ -236,14 +236,15 @@ export default {
   color: red
   
 .cover
-  width: 120px
-  height: 100px
+  width: 90px
+  height: 90px
   background-color: #eee
   position: relative
   background-size: 100% auto
   background-position: center center
   background-repeat: no-repeat
   transition: 0.5s
+  border-radius: 50%
 
 .el-tag
   margin-left: 1rem
@@ -270,5 +271,5 @@ export default {
     width: 178px
     height: 178px
     display: block
-  
+    border-radius: 50%
 </style>
