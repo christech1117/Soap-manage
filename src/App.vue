@@ -35,7 +35,7 @@ export default {
 }
 </script>
 <style lang="sass">
-    @import "../static/css/main.sass"
+    
     /*@import "../static/css/color-dark.sass"   深色主题*/
     /*@import "../static/css/theme-green/color-green.css";   浅绿色主题*/
 </style>
